@@ -1,0 +1,37 @@
+.CardSearch {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #cec754;
+  border-radius: 20px;
+}
+
+.CardSearch input {
+  border: none;
+  border-bottom: 4px solid #1d3573;
+  background: transparent;
+  outline: none;
+  margin: 0 10px;
+  font-size: 1.3rem;
+}
+
+.CardSearch label {
+  font-size: 1.3rem;
+}
+
+.CardSearch button {
+  background: none;
+  outline: none;
+  cursor: pointer;
+
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 2px solid #1d3573;
+}
+
+.CardSearch button:hover {
+  background: #1d3573;
+  border: 2px solid #cec754;
+  color: #cec754;
+}

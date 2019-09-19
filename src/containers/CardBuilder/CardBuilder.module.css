@@ -1,0 +1,13 @@
+.CardBuilder {
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  border: 2px solid yellow;
+  border-radius: 10px;
+}
+
+.Display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
