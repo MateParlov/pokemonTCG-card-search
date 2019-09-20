@@ -1,9 +1,13 @@
 import React from 'react';
 import styles from './CardSearch.module.css';
-
+import PropTypes from 'prop-types';
 //TODO:: Dodati autofill na search
 
 class CardSearch extends React.Component {
+  static propTypes = {
+    searchName: PropTypes.func.isRequired
+  };
+
   state = {
     name: ''
   };

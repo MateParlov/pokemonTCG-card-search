@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 const CardPreview = ({ card: { imageUrlHiRes, name } }) => {
   return (
     <div
@@ -17,6 +17,10 @@ const CardPreview = ({ card: { imageUrlHiRes, name } }) => {
       />
     </div>
   );
+};
+
+CardPreview.propTypes = {
+  card: PropTypes.object.isRequired
 };
 
 export default CardPreview;

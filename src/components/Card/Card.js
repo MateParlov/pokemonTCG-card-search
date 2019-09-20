@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 const Card = props => {
   const { imageUrl, name } = props.card;
 
@@ -17,6 +17,10 @@ const Card = props => {
       <img src={imageUrl} style={imgStyle} alt={name} onClick={handleClick} />
     </React.Fragment>
   );
+};
+
+Card.propTypes = {
+  card: PropTypes.object.isRequired
 };
 
 export default Card;
