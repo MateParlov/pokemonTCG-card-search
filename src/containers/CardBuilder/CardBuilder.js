@@ -5,13 +5,44 @@ import Card from '../../components/Card/Card';
 import Modal from '../../components/Modal/Modal';
 import CardPreview from '../../components/Card/CardPreview/CardPreview';
 
+const transformTypeToString = arr => {
+  let transformed = '&types=';
+  let types = arr.toString();
+  types = types.replace(/,/g, '|');
+  transformed += types;
+
+  return transformed;
+};
+
 class CardBuilder extends Component {
   state = {
     cards: [],
     searchedPokemon: '',
     previewCard: {},
-    showModule: false
+    showModule: false,
+    filter: {
+      type: []
+    }
   };
+
+  switchFilterType = type => {
+    let types = [...this.state.filter.type];
+
+    if (types.indexOf(type) >= 0) {
+      types = types.filter(item => {
+        if (item !== type) {
+          return item;
+        }
+      });
+    } else {
+      types.push(type);
+    }
+
+    const updatedFilter = { ...this.state.filter };
+    updatedFilter.type = types;
+    this.setState({ filter: updatedFilter });
+  };
+
   switchShow = () => {
     this.setState(state => {
       return { showModule: !state.showModule };
@@ -24,8 +55,8 @@ class CardBuilder extends Component {
 
   searchedPokemon = name => {
     this.setState({ searchedPokemon: name });
-
-    fetch('https://api.pokemontcg.io/v1/cards?name=' + name)
+    let types = transformTypeToString(this.state.filter.type);
+    fetch('https://api.pokemontcg.io/v1/cards?name=' + name + types)
       .then(res => res.json())
       .then(data => this.setState({ cards: [...data.cards] }));
   };
@@ -40,7 +71,10 @@ class CardBuilder extends Component {
         <Modal switchShow={this.switchShow} show={this.state.showModule}>
           <CardPreview card={this.state.previewCard} />
         </Modal>
-        <CardSearch searchName={this.searchedPokemon} />
+        <CardSearch
+          searchName={this.searchedPokemon}
+          switchFilterType={this.switchFilterType}
+        />
         <div className={styles.Display}>{rendPokemons}</div>
       </div>
     );

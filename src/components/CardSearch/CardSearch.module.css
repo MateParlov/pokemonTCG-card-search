@@ -1,10 +1,11 @@
 .CardSearch {
-  height: 70px;
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
   background-color: #cec754;
   border-radius: 20px;
+  position: relative;
 }
 
 .CardSearch input {
@@ -34,4 +35,13 @@
   background: #1d3573;
   border: 2px solid #cec754;
   color: #cec754;
+}
+
+.CardSearch .filterBtn {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+  background: #948f35;
+  color: white;
+  font-size: 1.1em;
 }
