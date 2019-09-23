@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './CardSearch.module.css';
 import PropTypes from 'prop-types';
+import CardFilter from '../CardFilter/CardFilter';
 //TODO:: Dodati autofill na search
 
 class CardSearch extends React.Component {
@@ -10,7 +11,19 @@ class CardSearch extends React.Component {
 
   state = {
     name: '',
-    types: ['fire', 'thunder', 'darkness', 'metal', 'grass', 'poison', 'ground']
+    types: [
+      'Colorless',
+      'Fire',
+      'Grass',
+      'Water',
+      'Lightning',
+      'Psychic',
+      'Fighting',
+      'Darkness',
+      'Fairy',
+      'Metal',
+      'Dragon'
+    ]
   };
   handleSubmit = e => {
     e.preventDefault();
@@ -23,15 +36,13 @@ class CardSearch extends React.Component {
     this.setState({ [name]: value });
   };
 
-  handleFilterType = e => {
-    const type = e.target.value;
+  handleFilterType = type => {
     this.props.switchFilterType(type);
   };
   render() {
     return (
       <div className={styles.CardSearch}>
-        <button className={styles.filterBtn}>filter</button>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className={styles.SearchForm}>
           <label>Pokemon Name: </label>
           <input
             name="name"
@@ -41,24 +52,12 @@ class CardSearch extends React.Component {
           />
           <button type="submit">Search</button>
         </form>
-        <div className={styles.Filter}>
-          <form>
-            <label>Type: </label>
-            {this.state.types.map(type => {
-              return (
-                <React.Fragment>
-                  <input
-                    type="checkbox"
-                    value={type}
-                    name={type}
-                    onClick={this.handleFilterType}
-                  />
-                  <span>{type}</span>
-                </React.Fragment>
-              );
-            })}
-          </form>
-        </div>
+        <button className={styles.filterBtn}>filter</button>
+        <CardFilter
+          typesArray={this.props.typesArray}
+          types={this.state.types}
+          handleFilterType={this.handleFilterType}
+        />
       </div>
     );
   }

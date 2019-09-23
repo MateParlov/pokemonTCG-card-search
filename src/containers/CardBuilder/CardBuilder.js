@@ -7,8 +7,7 @@ import CardPreview from '../../components/Card/CardPreview/CardPreview';
 
 const transformTypeToString = arr => {
   let transformed = '&types=';
-  let types = arr.toString();
-  types = types.replace(/,/g, '|');
+  let types = arr.join('|');
   transformed += types;
 
   return transformed;
@@ -72,6 +71,7 @@ class CardBuilder extends Component {
           <CardPreview card={this.state.previewCard} />
         </Modal>
         <CardSearch
+          typesArray={this.state.filter.type}
           searchName={this.searchedPokemon}
           switchFilterType={this.switchFilterType}
         />

@@ -1,4 +1,5 @@
 .CardSearch {
+  padding: 20px 10px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -8,20 +9,22 @@
   position: relative;
 }
 
-.CardSearch input {
+.SearchForm input {
   border: none;
   border-bottom: 4px solid #1d3573;
   background: transparent;
   outline: none;
   margin: 0 10px;
   font-size: 1.3rem;
+  width: 250px;
 }
 
-.CardSearch label {
+.SearchForm label {
   font-size: 1.3rem;
 }
 
-.CardSearch button {
+.SearchForm button,
+.filterBtn {
   background: none;
   outline: none;
   cursor: pointer;
@@ -44,4 +47,34 @@
   background: #948f35;
   color: white;
   font-size: 1.1em;
+}
+
+@media (max-width: 768px) {
+  .SearchForm {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .SearchForm input {
+    margin: 10px 0;
+    max-width: 80%;
+  }
+  .SearchForm button {
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 950px) {
+  .CardSearch {
+    justify-content: flex-start;
+  }
+
+  .CardSearch .filterBtn {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
 }
