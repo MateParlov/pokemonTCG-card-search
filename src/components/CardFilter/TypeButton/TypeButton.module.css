@@ -2,6 +2,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  cursor: pointer;
 }
 .TypeButton img {
   width: 100%;
@@ -9,5 +10,6 @@
 }
 
 .TypeButton.Active {
-  border: 2px solid lightseagreen;
+  border: 3px solid #134cb6;
+  box-shadow: 0 0 23px rgba(29, 53, 115, 0.4);
 }

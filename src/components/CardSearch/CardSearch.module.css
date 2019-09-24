@@ -8,15 +8,10 @@
   border-radius: 20px;
   position: relative;
 }
+.SearchForm {
+  width: 80%;
 
-.SearchForm input {
-  border: none;
-  border-bottom: 4px solid #1d3573;
-  background: transparent;
-  outline: none;
-  margin: 0 10px;
-  font-size: 1.3rem;
-  width: 250px;
+  display: flex;
 }
 
 .SearchForm label {
@@ -59,7 +54,6 @@
     width: 100%;
   }
   .SearchForm input {
-    margin: 10px 0;
     max-width: 80%;
   }
   .SearchForm button {
