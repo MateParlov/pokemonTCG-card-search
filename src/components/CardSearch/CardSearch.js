@@ -25,7 +25,8 @@ class CardSearch extends React.Component {
       'Metal',
       'Dragon'
     ],
-    pokemonSuggestion: []
+    pokemonSuggestion: [],
+    showFilter: false
   };
   handleSubmit = e => {
     e.preventDefault();
@@ -56,6 +57,14 @@ class CardSearch extends React.Component {
   handleFilterType = type => {
     this.props.switchFilterType(type);
   };
+
+  //open/close filter
+  switchFilter = e => {
+    this.setState(state => {
+      return { showFilter: !state.showFilter };
+    });
+  };
+
   render() {
     return (
       <div className={styles.CardSearch}>
@@ -70,8 +79,11 @@ class CardSearch extends React.Component {
 
           <button type="submit">Search</button>
         </form>
-        <button className={styles.filterBtn}>filter</button>
+        <button className={styles.filterBtn} onClick={this.switchFilter}>
+          filter
+        </button>
         <CardFilter
+          show={this.state.showFilter}
           typesArray={this.props.typesArray}
           types={this.state.types}
           handleFilterType={this.handleFilterType}
