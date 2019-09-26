@@ -5,26 +5,30 @@ import CardFilter from '../CardFilter/CardFilter';
 import CardSearchInput from './Input/Input';
 import POKEMON_NAMES from './../../assets/data/pokemonNames';
 
+const POKEMON_TYPES = [
+  'Colorless',
+  'Fire',
+  'Grass',
+  'Water',
+  'Lightning',
+  'Psychic',
+  'Fighting',
+  'Darkness',
+  'Fairy',
+  'Metal',
+  'Dragon'
+];
+
 class CardSearch extends React.Component {
   static propTypes = {
-    searchName: PropTypes.func.isRequired
+    searchName: PropTypes.func.isRequired,
+    typesArray: PropTypes.array.isRequired,
+    switchFilterType: PropTypes.func.isRequired
   };
 
   state = {
     name: '',
-    types: [
-      'Colorless',
-      'Fire',
-      'Grass',
-      'Water',
-      'Lightning',
-      'Psychic',
-      'Fighting',
-      'Darkness',
-      'Fairy',
-      'Metal',
-      'Dragon'
-    ],
+    types: POKEMON_TYPES,
     pokemonSuggestion: [],
     showFilter: false
   };
@@ -66,6 +70,7 @@ class CardSearch extends React.Component {
   };
 
   render() {
+    const { types, showFilter, pokemonSuggestion } = this.state;
     return (
       <div className={styles.CardSearch}>
         <form onSubmit={this.handleSubmit} className={styles.SearchForm}>
@@ -73,7 +78,7 @@ class CardSearch extends React.Component {
           <CardSearchInput
             value={this.state.name}
             onChange={this.handleInput}
-            suggestions={this.state.pokemonSuggestion}
+            suggestions={pokemonSuggestion}
             selectSuggestion={this.selectSuggestion}
           />
 
@@ -83,9 +88,9 @@ class CardSearch extends React.Component {
           filter
         </button>
         <CardFilter
-          show={this.state.showFilter}
+          show={showFilter}
           typesArray={this.props.typesArray}
-          types={this.state.types}
+          types={types}
           handleFilterType={this.handleFilterType}
         />
       </div>

@@ -13,7 +13,7 @@ const TypeButton = ({ type, clickFn, active }) => {
         onClick={handleClick}
         className={[styles.TypeButton, active && styles.Active].join(' ')}
       >
-        <img src={iconImg} />
+        <img src={iconImg} alt={`Type ${type}`} />
       </div>
     </React.Fragment>
   );

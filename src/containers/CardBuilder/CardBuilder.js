@@ -28,11 +28,7 @@ class CardBuilder extends Component {
     let types = [...this.state.filter.type];
 
     if (types.indexOf(type) >= 0) {
-      types = types.filter(item => {
-        if (item !== type) {
-          return item;
-        }
-      });
+      types = types.filter(item => item !== type);
     } else {
       types.push(type);
     }
@@ -61,17 +57,19 @@ class CardBuilder extends Component {
   };
 
   render() {
-    const rendPokemons = this.state.cards.map(card => {
+    const { cards, filter, showModule, previewCard } = this.state;
+
+    const rendPokemons = cards.map(card => {
       return <Card card={card} key={card.id} click={this.previewCard} />;
     });
-    console.log(this.state.cards);
+    console.log(cards);
     return (
       <div className={styles.CardBuilder}>
-        <Modal switchShow={this.switchShow} show={this.state.showModule}>
-          <CardPreview card={this.state.previewCard} />
+        <Modal switchShow={this.switchShow} show={showModule}>
+          <CardPreview card={previewCard} />
         </Modal>
         <CardSearch
-          typesArray={this.state.filter.type}
+          typesArray={filter.type}
           searchName={this.searchedPokemon}
           switchFilterType={this.switchFilterType}
         />
