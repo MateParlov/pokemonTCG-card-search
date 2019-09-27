@@ -1,4 +1,10 @@
 .Filter {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.TypeFilter {
   margin: 10px;
   display: flex;
   justify-content: space-between;

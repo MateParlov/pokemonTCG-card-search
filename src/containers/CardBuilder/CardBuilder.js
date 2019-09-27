@@ -20,8 +20,18 @@ class CardBuilder extends Component {
     previewCard: {},
     showModule: false,
     filter: {
-      type: []
+      type: [],
+      set: {
+        value: '',
+        label: 'ALL'
+      }
     }
+  };
+
+  selectedSet = value => {
+    let updatedFilter = { ...this.state.filter };
+    updatedFilter.set = value;
+    this.setState({ filter: updatedFilter });
   };
 
   switchFilterType = type => {
@@ -51,7 +61,8 @@ class CardBuilder extends Component {
   searchedPokemon = name => {
     this.setState({ searchedPokemon: name });
     let types = transformTypeToString(this.state.filter.type);
-    fetch('https://api.pokemontcg.io/v1/cards?name=' + name + types)
+    let set = `&setCode=${this.state.filter.set.value}`;
+    fetch('https://api.pokemontcg.io/v1/cards?name=' + name + types + set)
       .then(res => res.json())
       .then(data => this.setState({ cards: [...data.cards] }));
   };
@@ -72,6 +83,8 @@ class CardBuilder extends Component {
           typesArray={filter.type}
           searchName={this.searchedPokemon}
           switchFilterType={this.switchFilterType}
+          selectedOption={this.state.filter.set}
+          selectedSetFn={this.selectedSet}
         />
         <div className={styles.Display}>{rendPokemons}</div>
       </div>

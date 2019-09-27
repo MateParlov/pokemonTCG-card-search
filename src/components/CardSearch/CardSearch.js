@@ -88,6 +88,8 @@ class CardSearch extends React.Component {
           filter
         </button>
         <CardFilter
+          selectedSetFn={this.props.selectedSetFn}
+          selectedOption={this.props.selectedOption}
           show={showFilter}
           typesArray={this.props.typesArray}
           types={types}
